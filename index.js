@@ -160,7 +160,7 @@ app.delete('/teachers/:id', async (req, res) => {
   const teacherId = req.params.id;
 
   try {
-    const deletedTeacher = await Teacher.delete({_id : teacherId});
+    const deletedTeacher = await Teacher.findByIdAndDelete(teacherId);
 
     if (!deletedTeacher) {
       return res.status(404).json({ error: 'Teacher not found' });
@@ -172,6 +172,7 @@ app.delete('/teachers/:id', async (req, res) => {
     res.status(500).json({ error: 'Error deleting teacher' });
   }
 });
+
 
 // GET all teachers data
 app.get('/teachers', async (req, res) => {
