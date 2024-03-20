@@ -73,7 +73,7 @@ app.delete('/students/:id', async (req, res) => {
   const studentId = req.params.id;
 
   try {
-    const deletedStudent = await Student.delete({_id: studentId});
+    const deletedStudent = await Student.findByIdAndDelete(studentId);
 
     if (!deletedStudent) {
       return res.status(404).json({ error: 'Student not found' });
@@ -84,7 +84,8 @@ app.delete('/students/:id', async (req, res) => {
     console.error('Error deleting student:', error);
     res.status(500).json({ error: 'Error deleting student' });
   }
-})
+});
+
 
 //get all students data
 app.get('/students', async (req, res) => {
