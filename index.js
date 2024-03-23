@@ -55,6 +55,7 @@ app.put('/students/:id', async (req, res) => {
   const inputData = req.body;
 
   try {
+    console.log(inputData)
     const updatedStudent = await Student.findByIdAndUpdate(studentId, inputData, { new: true });
 
     if (!updatedStudent) {
